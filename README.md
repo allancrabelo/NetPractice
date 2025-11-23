@@ -163,6 +163,101 @@ To simulate an internet connection, a device must have:
 
 In real life, NAT would be used to map private addresses to a public one, but the NetPractice environment abstracts this. Focusing strictly on IP logic and routing.
 
+# WALKTHROUGH
+
+<details>
+  <summary>Level 1</summary>
+  <br>
+  
+<img width="1907" height="941" alt="Level01" src="https://github.com/user-attachments/assets/5ac9826f-23e7-4c50-b19b-34ab5b6c0ae8" />
+This is a simple exercise involving a connection using only cables, meaning the devices are on different networks. The subnet masks are already defined, so there is no need to change them. You only need to copy the blocked IP address to the other device and increase the last number by +1.
+
+</details>
+
+
+<details>
+  <summary>Level 2</summary>
+  <br>
+  
+<img width="1907" height="941" alt="Level02" src="https://github.com/user-attachments/assets/25f10e1d-2fab-4675-9592-5932f669f32a" />
+
+On the A–B side, you only need to keep the same subnet mask. Then, copy the blocked IP address to the other device and decrease the last number by –1.
+
+On the C–D side, the subnet mask is /30 (meaning there are very few usable IPs). The IP that was originally configured is not allowed, so I changed it to 42.42.42.254 to use an available IP within a valid subnet. After that, I copied it to the other device and decreased the last number by –1.
+
+</details>
+
+<details>
+  <summary>Level 3</summary>
+  <br>
+  
+<img width="1907" height="941" alt="Level03" src="https://github.com/user-attachments/assets/c2ecc151-ffb9-4c0d-b86c-3aebf4e8a633" />
+
+This is a switch exercise, so you need to connect all three PCs. First, look for the blocked subnet mask and apply the same mask to every PC.
+
+Next, check the blocked IP address. Since it uses a /25 mask, there are plenty of available subnets. Simply assign the IP to the first PC, then decrease the last number by –1 for each of the remaining PCs.
+
+</details>
+
+<details>
+  <summary>Level 4</summary>
+  <br>
+  
+<img width="1907" height="941" alt="image" src="https://github.com/user-attachments/assets/af0eb219-ffd9-4cac-9742-fefa4858cc1e" />
+
+You need to connect two PCs to a switch, and then connect the switch to the router. Start with the PCs: ignore interface R2, and work only with R1.
+
+Since R1’s subnet mask is blocked, simply copy that same mask to all connections. Because Host A’s IP address is also blocked, take that IP, apply it to each interface, and increase the last number by +1 for each device.
+
+</details>
+
+<details>
+  <summary>Level 5</summary>
+  <br>
+  
+<img width="1904" height="952" alt="image" src="https://github.com/user-attachments/assets/cc25e56c-acdb-48e3-aab5-35564a92cef5" />
+
+We are now being introduced to a gateway. Here, we need to make sure that the default gateways point to their correct interfaces.
+
+Start by copying the router’s subnet masks to the corresponding hosts. Then, take the blocked IP addresses, apply them to the appropriate PCs, and reduce the last number by –1 to place each device correctly within the subnet.
+
+</details>
+
+
+<details>
+  <summary>Level 6</summary>
+  <br>
+  
+<img width="1904" height="952" alt="image" src="https://github.com/user-attachments/assets/d0705f34-673a-44d2-8d5e-a4527fcf93f1" />
+
+In this exercise, we need to connect a PC to a switch, the switch to the host, and then connect the entire system to the internet, remembering to set the gateways correctly.
+
+Since the router’s subnet mask was blocked, I copied it to the PC. Then, I took the PC’s IP address, copied it to the router, and decreased the last number by –1 to create the router’s subnet address. This adjusted IP was then assigned as the PC’s gateway.
+
+Next, to connect the system to the internet, we simply copy the system’s IP address and change the subnet to .0/0, which is required for internet connectivity. Finally, we set the gateway to the default.
+
+</details>
+
+<details>
+  <summary>Level 7</summary>
+  <br>
+  
+<img width="1904" height="952" alt="Level07" src="https://github.com/user-attachments/assets/7d284ecf-ea4c-49f3-97c8-b0b84429700e" />
+
+We need to connect all the devices, starting from the top where the IP is blocked and moving down. First, copy the blocked IP address to the PC and increase the last octet by 1, then set the gateway. Next, move from one router to the other: copy the blocked IP address to the other router, this time decreasing the last octet by 1, and set the gateway. Finally, assign the last two devices the IP addresses ending in .66 and .67. Set the subnet mask to /26 for all devices so that each one is on a separate network.
+
+</details>
+
+<details>
+  <summary>Level 8</summary>
+  <br>
+  
+<img width="1904" height="952" alt="Level8" src="https://github.com/user-attachments/assets/f7cbf732-9be9-4e55-8faf-d0d13e131ad9" />
+
+At the bottom of the connection, there is a blocked subnet mask, which is the same as the one at the top. Set all devices to use the same mask. There is a blocked mask on the gateway, so we copy it to the left and set the subnet to 1, then increase the last octet by 1 for the next device. On the other side, we do the same, but assign .17 and .18 since the mask increments by 16. The next IPs are blocked, so I simply copied the others and set .61, increasing by 1 for the following device. Finally, copy the router’s IP to the internet connection and take the internet IP, keeping only the first octet followed by 0.0.0/8.
+
+</details>
+
 ---
 
 ### REFERENCES
