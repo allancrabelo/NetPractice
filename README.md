@@ -258,6 +258,81 @@ At the bottom of the connection, there is a blocked subnet mask, which is the sa
 
 </details>
 
+<details>
+  <summary>Level 9</summary>
+  <br>
+  
+<img width="1903" height="961" alt="Level9" src="https://github.com/user-attachments/assets/8902ce3c-bc51-4149-aea2-f7dc7a10b399" />
+
+<p>1) PCs on the Router</p>
+
+There is a blocked /18 subnet mask. Copy this mask to every device in the system.
+Next, take the blocked IP from the routing table and copy it to the device on the left. For the next device, subtract 1 from the last octet to create a valid connection.
+
+To connect the device on the left, remember that a /18 mask affects two octets, so the next IP must change significantly to ensure it belongs to a different subnet. You can either halve or double the second octet as a rule of thumb.
+For example:
+XX.255 → XX/2.1 or 2XX.1
+
+<p>2) Switch</p>
+
+Copy the blocked subnet mask to all devices connected to the switch.
+Then, assign a general IP pattern that is valid for all connections, such as:
+1.2.3.1, 1.2.3.2, and 1.2.3.3.
+The routing tables in this section use default configurations.
+
+<p>3) Routing Table</p>
+
+Copy the mask and choose any IP ending in .253 or .254, for example:
+2.3.4.253.
+
+In the routing table, we match the network by comparing the first octets.
+When creating the redirection entries, copy the base IPs and end them with:
+.0.0/16
+
+<p>4) Internet</p>
+
+To establish the internet connection, simply take the first octet of each system’s IP address and apply the mask:
+.0.0.0/8
+
+This ensures that all systems connect to the internet through a broad, valid network ran
+
+</details>
+
+<details>
+  <summary>Level 10</summary>
+  <br>
+  
+<img width="1903" height="961" alt="Level10" src="https://github.com/user-attachments/assets/0a4af8c6-69da-43e5-a5fc-a9b05ec7d13c" />
+
+
+<p>1) Connecting the Lower System</p>
+
+Start by connecting the bottom system. There is a blocked subnet mask — simply copy it and apply it to the device on the left.
+For the device on the right, use the same initial address but end it with .224.
+
+In the routing table, you will find a blocked IP. Copy this IP upward to complete the connection.
+
+On the opposite side, just copy the values and assign the subnets .193 and .194, then complete the routing entries accordingly.
+
+<p>2) Switch Configuration</p>
+
+The switch setup is simpler.
+Apply the same subnet mask and copy the IP so that all devices fall under the .1 subnet.
+
+<p>3) Connecting Two Routers</p>
+
+Between the two routers, copy the subnet mask from one side to the other.
+In the routing table, copy the IP and finish it with .192/27 to ensure proper network matching.
+
+<p>4) Internet Connection</p>
+
+To connect to the internet, use only the first octet of each system’s IP.
+Format it as:
+XXX.0.0.0/8
+This allows the routing table to compare only the first octet and provide internet access to all devices.
+
+</details>
+
 ---
 
 ### REFERENCES
